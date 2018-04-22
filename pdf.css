@@ -1,0 +1,72 @@
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #404040;
+}
+
+.pdf_header {
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    background-color: #474747;
+    box-shadow: 1px 1px 1px #565656;
+}
+
+.pdf_header #prev {
+    float: left;
+}
+
+.pdf_header #next {
+    float: right;
+}
+
+.pdf_header button {
+    border: none;
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    background: none;
+    color: #fff;
+    /*border-radius: 50%;*/
+    font-size: 20px;
+    padding: 0
+}
+
+.pdf_header span {
+    color: #fff;
+}
+
+#viewerContainer {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 32px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: none;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+}
+
+canvas {
+    margin: 0 auto;
+    display: block;
+    direction: ltr;
+    margin: 1px auto -8px auto;
+    position: relative;
+    overflow: visible;
+    border: 9px solid transparent;
+    background-clip: content-box;
+    /*background-color: white;*/
+}
+
+#loading  
+{  
+    position:fixed;  
+    top:40%;  
+    left:45%;  
+    z-index:999;  
+    display: none;
+}  

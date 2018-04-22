@@ -5,39 +5,10 @@
     <meta charset="utf-8">
     <title>pdfDemo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
     <script src="pdf.js"></script>
-    <style>
-    .pdf_header {
-        overflow: hidden;
-        text-align: center;
-    }
-
-    .pdf_header #prev {
-        float: left;
-    }
-
-    .pdf_header #next {
-        float: right;
-    }
-
-    canvas {
-        margin: 0 auto;
-        display: block;
-    }
-    .pdf_header button{
-        border: none;
-        width: 30px;
-        text-align: center;
-        height: 30px;
-        line-height: 30px;
-        border:1px solid #ccc;
-        background: #ccc;
-        color: #fff;
-        border-radius: 50%;
-        font-size: 20px;
-        padding: 0
-    }
-    </style>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="pdf.css">
 </head>
 
 <body>
@@ -51,8 +22,17 @@
         <button id="zoomIn">+</button>
         </span>
     </div>
-    <canvas id="the-canvas"></canvas>
+    <div id="viewerContainer">
+        <canvas id="the-canvas"></canvas>
+    </div>
+
+    <div id="loading">
+        <img src="loading.gif" alt="">
+    </div>
+    
     <script type="text/javascript">
+        document.getElementById('loading').style.display='block';
+        // $('#loading').show();
     var url = 'http://cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
@@ -65,10 +45,10 @@
         pageNum = 1,
         pageRendering = false,
         pageNumPending = null,
-        scale = 0.6,
+        scale = 0.5,
         canvas = document.getElementById('the-canvas'),
         ctx = canvas.getContext('2d');
-
+    
     /**
      * Get page info from document, resize canvas accordingly, and render page.
      * @param num Page number.
@@ -97,6 +77,8 @@
                     pageNumPending = null;
                 }
             });
+
+            document.getElementById('loading').style.display='none';
         });
 
         // Update page counters
@@ -156,7 +138,7 @@
      */
     function onSmallSize() {
         console.log(scale);
-        if (scale > 0.7) {
+        if (scale > 0.6) {
             scale -= 0.5;
             renderPage(pageNum);
         }
